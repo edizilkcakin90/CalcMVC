@@ -1,0 +1,29 @@
+Hesap Makinesi uygulamasini kullanmak icin uygulanmasi gereken adimlar asagidadir.
+
+Projeyi actiktan sonra;
+
+1-) Tools sekmesinden NuGet Package Manager'dan Package Manager Console'u aciniz.
+
+2-) Acilan Console'a "enable-migrations" yazip enter'a basiniz.
+
+3-) Yukleme tamamlandiktan sonra acilan sayfada 
+
+	AutomaticMigrationsEnabled = false; yazacaktir.
+	
+	false'u silip true yaziniz.
+
+4-) Projeyi kaydedip tekrar console'da "update-database" yazip enter'a basiniz.
+
+5-) Artik veritabanimiz MS SQL Server'a yuklenmistir.
+
+6-) MS SQL server i acip Database klasorunden CALC_DB'yi genisletiniz. Tables klasorunu ayni sekilde genisletiyoruz ve dbo.Users'a sag tiklayip Edit Top 200 Rows'a tiklayiniz..
+
+7-) Ilgili alanlari tek tek doldurunuz ve kaydediniz.
+
+8-) Projemize geri donup F5 tusu ile ya da yukarida gordugunuz IIS Express butonuna tiklayarak projeyi baslatiniz.
+
+9-) Acilan sayfada veritabanina kaydetmis oldugunuz UserName ve Password'u Kullanici Adi ve Sifre alanlarina girip "Giris Yap" butonuna tiklayiniz.
+
+10-) Hesap makineniz kullanima hazir hale gelmistir. Islemlerinizi kontrol ettikten sonra "Cikis" butonuna tiklayabilirsiniz.
+
+Tesekkurler. 

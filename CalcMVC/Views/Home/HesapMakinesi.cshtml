@@ -1,0 +1,123 @@
+﻿
+@model int?
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hesap Makinesi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+    <script language="javascript">
+        var rakamekle = false
+        var oncekisonuc = 0
+        var islem = "="
+
+        function temizle() {
+            document.hesapmakinesi.sonuc.value = 0
+            oncekisonuc = 0
+            rakamekle = false
+            islem = "="
+        }
+
+        function yaz(rakam) {
+            debugger
+            if (rakamekle) {
+                document.hesapmakinesi.sonuc.value += rakam
+            }
+            else {
+                document.hesapmakinesi.sonuc.value += rakam
+                rakamekle = true
+            }
+        }
+
+        function esittir() {
+            debugger
+            var hesap = document.getElementById('islem').value
+            var s = document.getElementById('snc').value
+
+            if (s.includes('+')) {
+                window.location.href = '/Home/Topla?sayi1=' + s;
+            }
+            else if (s.includes('-')) {
+                window.location.href = '/Home/Cikar?sayi1=' + s;
+            }
+            else if (s.includes('*')) {
+                window.location.href = '/Home/Carp?sayi1=' + s;
+            }
+            else if (s.includes('/')) {
+                window.location.href = '/Home/Bol?sayi1=' + s;
+            }
+            else {
+                window.location.href = '/Home/Esit?sayi1=' + s;
+            }
+                
+        }
+
+        function kontrol() {
+            
+            var s = document.getElementById('snc').value
+            var ss = s.charAt(s.length - 1);
+
+            if (ss == "+" || ss == "-" || ss == "*" || ss == "/") {
+                s = s.slice(0, -1);
+                document.hesapmakinesi.sonuc.value = s;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row main">
+            <div class="col-xs-12  col-sm-offset-12 col-sm-12  col-md-offset-12 col-md-12  col-lg-offset-12 col-lg-12">
+                <form name="hesapmakinesi" class="well calcontainer col-xs-12  col-sm-offset-12 col-sm-12  col-md-offset-12 col-md-12  col-lg-offset-12 col-lg-12" style="margin-top:30px; margin-left:50px; opacity:0.9;">
+
+                    @{
+                        if (TempData["sonuc"] != null)
+                        {
+                            int sonuc = (int)TempData["sonuc"];
+                            <input class="form-control" type="text" id="snc" name="sonuc" value="@sonuc" disabled>
+                        }
+                        else
+                        {
+                            <input class="form-control" type="text" id="snc" name="sonuc" value="0" disabled>
+                        }
+                    }
+
+                    <br>
+                    <input class="form-group btn btn-info bttn bttne" type="button" name="C" value="C" onClick="temizle()">
+                    <br />
+                    <input class="form-group btn btn-default bttn" type="button" name="7" value="7" onClick="yaz(7)">
+                    <input class="form-group btn btn-default bttn" type="button" name="8" value="8" onClick="yaz(8)">
+                    <input class="form-group btn btn-default bttn" type="button" name="9" value="9" onClick="yaz(9)">
+                    <input class="form-group btn btn-danger bttn" type="button" name="+" value="+" onClick="kontrol(); yaz('+')">
+
+                    <br>
+                    <input class="form-group btn btn-default bttn" type="button" name="4" value="4" onClick="yaz(4)">
+                    <input class="form-group btn btn-default bttn" type="button" name="5" value="5" onClick="yaz(5)">
+                    <input class="form-group btn btn-default bttn" type="button" name="6" value="6" onClick="yaz(6)">
+                    <input class="form-group btn btn-danger bttn" type="button" name="-" value="-" onClick="kontrol(); yaz('-')">
+                    <br>
+                    <input class="form-group btn btn-default bttn" type="button" name="1" value="1" onClick="yaz(1)">
+                    <input class="form-group btn btn-default bttn" type="button" name="2" value="2" onClick="yaz(2)">
+                    <input class="form-group btn btn-default bttn" type="button" name="3" value="3" onClick="yaz(3)">
+                    <input class="form-group btn btn-danger bttn" type="button" name="*" value="*" onClick="kontrol(); yaz('*')">
+                    <br>
+                    <input class="form-group btn btn-default bttn" type="button" name="0" value="0" onClick="yaz(0)">
+                    <input class="form-group btn btn-success bttn bttne" type="button" id="islem" name="islem" value="=" onClick="esittir('=')">
+                    <input class="form-group btn btn-danger bttn" type="button" name="/" value="/" onClick="kontrol(); yaz('/')">
+
+                    <a href="/Home/CikisYap" class="btn-outline-danger" style="float:right; margin-top:20px;">
+                        <span class="glyphicon glyphicon-log-out"></span>Cikis
+                    </a>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

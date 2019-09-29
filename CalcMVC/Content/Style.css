@@ -1,0 +1,42 @@
+﻿body {
+    margin: 0;
+    padding: 20px;
+    background-color: black;
+    background-image: url(https://media.giphy.com/media/WoD6JZnwap6s8/giphy.gif)
+}
+
+.main {    
+    margin: 0 auto;
+}
+
+.calcontainer {
+    padding-left:30px;
+    padding-top:30px;    
+    width: 400px;    
+}
+
+#panel {
+    text-align: right;
+    width: 500px;
+    height: 80px;
+    font-size: 26px;
+    background-color: black;
+}
+
+    #panel:hover {
+        cursor: col-resize;
+    }
+
+.bttn {
+    margin-bottom: 8px;
+    margin-left: 5px;
+    width: 59px;
+    height: 45px;
+    font-size: 22px;
+}
+
+.bttne {
+    width: 120px;
+    margin-top: 10px;
+    margin-right: 11px;
+}
